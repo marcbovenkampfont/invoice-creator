@@ -1,0 +1,102 @@
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+
+  .input-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.25rem;
+    transition: color 0.2s ease;
+  }
+
+  .input-field {
+    padding: 0.275rem 0.875rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: #1f2937;
+    background-color: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    &::placeholder {
+      color: #9ca3af;
+      font-style: italic;
+    }
+
+    &:hover {
+      border-color: #c7d2fe;
+      box-shadow: 0 2px 6px rgba(199, 210, 254, 0.1);
+    }
+
+    &:focus {
+      border-color: #c7d2fe;
+      box-shadow: 0 0 0 3px rgba(199, 210, 254, 0.1),
+                  0 2px 8px rgba(199, 210, 254, 0.15);
+    }
+
+    &:disabled {
+      background-color: #f3f4f6;
+      border-color: #e5e7eb;
+      color: #9ca3af;
+      cursor: not-allowed;
+      
+      &:hover {
+        border-color: #e5e7eb;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    &.error {
+      border-color: #f87171;
+      
+      &:focus {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1),
+                    0 2px 8px rgba(239, 68, 68, 0.15);
+      }
+    }
+
+    &.success {
+      border-color: #34d399;
+      
+      &:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1),
+                    0 2px 8px rgba(16, 185, 129, 0.15);
+      }
+    }
+  }
+
+  .input-error {
+    font-size: 0.875rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    animation: slideIn 0.2s ease;
+  }
+
+  .input-helper {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
