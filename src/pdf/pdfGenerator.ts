@@ -28,7 +28,22 @@ export const generatePdf = (data: PdfData) => {
   doc.text(`Triq Clarence 122b, 1.1, Msida, MSD 1290, Malta`, 20, 20);
   doc.text(`VAT 3247-8213`, 20, 25);
   doc.text(`+34 663450646`, 20, 30);
-  doc.text(`marc@bovenkamp.es`, 20, 35);
+  
+  // Estilo para el email (azul y subrayado)
+  const emailText = `marc@bovenkamp.es`;
+  const emailX = 20;
+  const emailY = 35;
+  doc.setTextColor(0, 0, 255); // Azul
+  doc.text(emailText, emailX, emailY);
+  
+  // Dibujar línea de subrayado
+  const emailWidth = doc.getTextWidth(emailText);
+  doc.setDrawColor(0, 0, 255); // Línea azul
+  doc.line(emailX, emailY + 0.5, emailX + emailWidth, emailY + 0.5);
+  
+  // Restaurar estilo por defecto
+  doc.setTextColor(0, 0, 0); // Negro
+  doc.setDrawColor(0, 0, 0); // Línea negra
 
   // INVOICE
 
@@ -60,9 +75,9 @@ export const generatePdf = (data: PdfData) => {
     head: [[
       { content: '#', styles: { halign: 'center' } }, 
       { content: 'Description', styles: { halign: 'left' } }, 
-      { content: 'Cant.', styles: { halign: 'center' } }, 
-      { content: 'Ud.', styles: { halign: 'center' } }, 
-      { content: 'Precio', styles: { halign: 'right' } }, 
+      { content: 'Qty.', styles: { halign: 'center' } }, 
+      { content: 'Unit', styles: { halign: 'center' } }, 
+      { content: 'Price', styles: { halign: 'center' } }, 
       { content: 'Total', styles: { halign: 'right' } }
     ]],
     body: data.items?.map((item, index) => [
@@ -82,7 +97,7 @@ export const generatePdf = (data: PdfData) => {
       1: { halign: 'left', cellPadding: { horizontal: 2, top: 2, bottom: 4} },
       2: { cellWidth: 15, halign: 'center', cellPadding: { horizontal: 1, top: 2, bottom: 4 } },
       3: { cellWidth: 'wrap', halign: 'center', cellPadding: { horizontal: 1, top: 2, bottom: 4 } },
-      4: { cellWidth: 20, halign: 'right', cellPadding: { horizontal: 1, top: 2, bottom: 4 } },
+      4: { cellWidth: 20, halign: 'center', cellPadding: { horizontal: 1, top: 2, bottom: 4 } },
       5: { cellWidth: 20, halign: 'right', cellPadding: { horizontal: 1, top: 2, bottom: 4 } },
     },
   });
@@ -108,9 +123,9 @@ export const generatePdf = (data: PdfData) => {
 
   doc.text("PAYMENT METHOD", 20, endTable + 45);
   doc.setFont('helvetica', 'normal');
-  doc.text("Account Holder: Marc van de Bovenkamp Font", 20, endTable + 51);
-  doc.text("IBAN: LT16 3250 0946 9403 3525", 20, endTable + 57);
-  doc.text("SWIFT/BIC: REVOLT21 ", 20, endTable + 63);
+  doc.text(`Account Holder: ${data.bankAccount.accountHolder}`, 20, endTable + 51);
+  doc.text(`IBAN: ${data.bankAccount.iban.trim()}`, 20, endTable + 57);
+  doc.text(`SWIFT/BIC: ${data.bankAccount.swift}`, 20, endTable + 63);
   doc.text(`Concept: Invoice ${letrasInvoice}-${numerosInvoice}`, 20, endTable + 69);
 
 

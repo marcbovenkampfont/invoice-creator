@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { generatePdf } from "../../pdf/pdfGenerator";
 import type { PdfData } from "../../types/pdf";
 import { clients } from "../../util/constants/clients";
+import { bankAccounts } from "../../util/constants/bankAccounts";
 import Input from "../Input/Input";
 import "./PdfForm.scss";
 import type { Client } from "../../types/client";
+import type { BankAccount } from "../../types/bankAccount";
 import type { Item } from "../../types/items";
 
 // Función para formatear números con formato europeo (1.234,56)
@@ -37,6 +39,7 @@ const formatInputNumber = (value: string): string => {
 
 const PdfForm: React.FC = () => {
 	const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+	const [selectedBankAccount, setSelectedBankAccount] = useState<BankAccount>(bankAccounts[0]); // Por defecto la primera cuenta
 	const [title, setTitle] = useState("");
 
 	const [items, setItems] = useState<Item[]>([
@@ -114,10 +117,12 @@ const PdfForm: React.FC = () => {
 		}
 
 		console.log("Selected Client:", selectedClient);
+		console.log("Selected Bank Account:", selectedBankAccount);
 
 		const data: PdfData = {
 			title,
 			client: selectedClient,
+			bankAccount: selectedBankAccount,
 			date: new Date().toLocaleDateString(),
 			amount: getTotalAmount(),
 			items: items,
@@ -156,6 +161,37 @@ const PdfForm: React.FC = () => {
 								<div className="detail-item">
 									<span className="detail-icon">📍</span>
 									<span className="detail-text">{client.address}, {client.cp} {client.city}</span>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div className="form-section">
+				<h2 className="section-title">
+					<span className="section-icon">🏦</span>
+					Selecciona una Cuenta Bancaria
+				</h2>
+				<div className="clients-grid">
+					{bankAccounts.map((account) => (
+						<div
+							key={account.id}
+							className={`client-card ${selectedBankAccount?.id === account.id ? "selected" : ""}`}
+							onClick={() => setSelectedBankAccount(account)}
+						>
+							<div className="client-card-header">
+								<h3 className="client-name">{account.name}</h3>
+								<span className="client-tax-id">{account.accountHolder}</span>
+							</div>
+							<div className="client-details">
+								<div className="detail-item">
+									<span className="detail-icon">🏦</span>
+									<span className="detail-text">{account.iban}</span>
+								</div>
+								<div className="detail-item">
+									<span className="detail-icon">💳</span>
+									<span className="detail-text">SWIFT: {account.swift}</span>
 								</div>
 							</div>
 						</div>
