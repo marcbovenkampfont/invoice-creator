@@ -11,24 +11,24 @@ export const clients: Client[] = [
     city: 'Madrid',
     country: 'Spain'
   },
-  {
-    id: '2',
-    name: 'Tech Solutions SL',
-    email: 'info@techsolutions.es',
-    address: 'Paseo de Gracia 45',
-    taxId: 'ESB87654321',
-    cp: '08007',
-    city: 'Barcelona',
-    country: 'Spain'
-  },
-  {
-    id: '3',
-    name: 'Innovatech SA',
-    email: 'admin@innovatech.com',
-    address: 'Avenida de la Constitución 10',
-    taxId: 'A11223344',
-    cp: '41001',
-    city: 'Sevilla',
-    country: 'Spain'
-  },
+  // {
+  //   id: '2',
+  //   name: 'Tech Solutions SL',
+  //   email: 'info@techsolutions.es',
+  //   address: 'Paseo de Gracia 45',
+  //   taxId: 'ESB87654321',
+  //   cp: '08007',
+  //   city: 'Barcelona',
+  //   country: 'Spain'
+  // },
+  // {
+  //   id: '3',
+  //   name: 'Innovatech SA',
+  //   email: 'admin@innovatech.com',
+  //   address: 'Avenida de la Constitución 10',
+  //   taxId: 'A11223344',
+  //   cp: '41001',
+  //   city: 'Sevilla',
+  //   country: 'Spain'
+  // },
 ];
