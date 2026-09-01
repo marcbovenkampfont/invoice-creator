@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { generatePdf } from "../../util/pdf/pdfGenerator";
-import type { PdfData } from "../../types/pdf";
+import { generatePdf } from "@/util/pdf/pdfGenerator";
+import type { PdfData } from "@/types/pdf";
 import type { BusinessInfo } from "@/domains/settings/types/business";
 import { getAllClients, getAllBankAccounts, getBusinessInfo } from "@/util/storage/dataService";
 import Input from "../Input/Input";
 import "./PdfForm.scss";
-import type { Client } from "../../domains/clients/types/client";
-import type { BankAccount } from "../../domains/bankAccounts/types/bankAccount";
-import type { Item } from "../../domains/invoices/types/items";
+import type { Client } from "@/domains/clients/types/client";
+import type { BankAccount } from "@/domains/bankAccounts/types/bankAccount";
+import type { Item } from "@/domains/invoices/types/items";
 import Modal from "../Modal/Modal";
-import NewClient from "../../features/clients/components/NewClient/NewClient";
-import { ClientCard } from "../../domains/clients/components/ClientCard/ClientCard";
+import NewClient from "@/features/clients/components/NewClient/NewClient";
+import { ClientCard } from "@/domains/clients/components/ClientCard/ClientCard";
 
 // Función para formatear números con formato europeo (1.234,56)
 const formatEuropeanNumber = (num: number): string => {

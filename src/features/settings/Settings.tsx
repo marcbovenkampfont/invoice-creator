@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from '../../components/Input/Input';
-import { getBusinessInfo, saveBusinessInfo, generateId } from '@/util/storage/dataService';
+import { getBusinessInfo, saveBusinessInfo, generateId } from '../../util/storage/dataService';
 import type { BusinessInfo } from '@/domains/settings/types/business';
 
 export const Settings: React.FC = () => {
