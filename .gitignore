@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Sensitive data - use .example.ts files as templates
+src/util/constants/*.local.ts
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

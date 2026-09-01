@@ -8,7 +8,8 @@ export const Layout: React.FC = () => {
   const navItems = [
     { path: '/', label: 'Inicio', icon: '🏠' },
     { path: '/invoices', label: 'Facturas', icon: '📄' },
-    // { path: '/clients', label: 'Clientes', icon: '👥' },
+    { path: '/clients', label: 'Clientes', icon: '👥' },
+    { path: '/bank-accounts', label: 'Cuentas Bancarias', icon: '🏦' },
     { path: '/settings', label: 'Configuración', icon: '⚙️' },
   ];
 

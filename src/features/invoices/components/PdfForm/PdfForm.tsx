@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { generatePdf } from "../../util/pdf/pdfGenerator";
-import type { PdfData } from "../../types/pdf";
+import { generatePdf } from "@/util/pdf/pdfGenerator";
+import type { PdfData } from "@/types/pdf";
 import type { BusinessInfo } from "@/domains/settings/types/business";
 import { getAllClients, getAllBankAccounts, getBusinessInfo } from "@/util/storage/dataService";
-import Input from "../Input/Input";
+import Input from "@/components/Input/Input";
 import "./PdfForm.scss";
-import type { Client } from "../../domains/clients/types/client";
-import type { BankAccount } from "../../domains/bankAccounts/types/bankAccount";
-import type { Item } from "../../domains/invoices/types/items";
-import Modal from "../Modal/Modal";
-import NewClient from "../../features/clients/components/NewClient/NewClient";
-import { ClientCard } from "../../domains/clients/components/ClientCard/ClientCard";
+import type { Client } from "@/domains/clients/types/client";
+import type { BankAccount } from "@/domains/bankAccounts/types/bankAccount";
+import type { Item } from "@/domains/invoices/types/items";
+import Modal from "@/components/Modal/Modal";
+import NewClient from "@/features/clients/components/NewClient/NewClient";
+import { ClientsGrid } from "@/domains/clients";
 
 // Función para formatear números con formato europeo (1.234,56)
 const formatEuropeanNumber = (num: number): string => {
@@ -58,7 +58,6 @@ const PdfForm: React.FC = () => {
 		setClients(allClients);
 		setBankAccounts(allBankAccounts);
 		setBusinessInfo(businessInfoData);
-		
 		// Seleccionar la primera cuenta bancaria por defecto
 		if (allBankAccounts.length > 0) {
 			setSelectedBankAccount(allBankAccounts[0]);
@@ -146,7 +145,8 @@ const PdfForm: React.FC = () => {
 			alert("Por favor, selecciona un cliente");
 			return;
 		}
-if (!selectedBankAccount) {
+
+		if (!selectedBankAccount) {
 			alert("Por favor, selecciona una cuenta bancaria");
 			return;
 		}
@@ -180,13 +180,11 @@ if (!selectedBankAccount) {
 					<span className="section-icon">👥</span>
 					Selecciona un Cliente
 				</h2>
-				<div className="clients-grid">
-					{clients.map((client) => (
-						<ClientCard client={client} key={client.id} className={`${selectedClient?.id === client.id ? "selected" : ""}`} onClick={() => setSelectedClient(client)} />
-					))}
-
-					<ClientCard client={undefined} onClick={() => console.log("add Client clicked")} />
-				</div>
+				<ClientsGrid 
+					clients={clients}
+					selectedClient={selectedClient}
+					onSelectClient={(client) => setSelectedClient(client)}
+				/>
 			</div>
 
 			<div className="form-section">
@@ -338,12 +336,15 @@ if (!selectedBankAccount) {
 				</div>
 
 				<div className="form-actions">
-					<button type="submit" className="submit-button" disabled={!selectedClient}>
+					<button type="submit" className="submit-button" disabled={!selectedClient || !selectedBankAccount}>
 						<span className="button-icon">📄</span>
 						Generar PDF
 					</button>
 					{!selectedClient && (
 						<p className="form-hint">⚠️ Selecciona un cliente para continuar</p>
+					)}
+					{!selectedBankAccount && (
+						<p className="form-hint">⚠️ Selecciona una cuenta bancaria para continuar</p>
 					)}
 				</div>
 			</form>

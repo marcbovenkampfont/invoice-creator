@@ -1,0 +1,52 @@
+@use '../variables' as *;
+
+.action-bar {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-xl;
+  margin-top: $spacing-md;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .search-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.875rem 1.25rem;
+    border: 2px solid $border-color;
+    border-radius: $radius-md;
+    font-size: 1rem;
+    transition: $transition-smooth;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    &::placeholder {
+      color: $text-light;
+    }
+  }
+
+  .success-message {
+    color: #059669;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    background: #d1fae5;
+    border-radius: $radius-md;
+    border: 1px solid #34d399;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

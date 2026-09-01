@@ -1,0 +1,13 @@
+// Importar variables primero (sin prefijo _ en el import)
+@use 'variables';
+
+// Estilos globales base
+@use 'globals';
+
+// Componentes compartidos
+@use 'shared/animations';
+@use 'shared/layouts';
+@use 'shared/buttons';
+@use 'shared/forms';
+@use 'shared/cards';
+@use 'shared/states';

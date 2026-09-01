@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 import autotable from 'jspdf-autotable';
-import type { PdfData } from "../types/pdf";
+import type { PdfData } from "../../types/pdf";
 
 // Función para formatear números con formato europeo (1.234,56)
 const formatEuropeanNumber = (num: number): string => {
@@ -24,13 +24,13 @@ export const generatePdf = (data: PdfData) => {
   // Mis datos
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(10);
-  doc.text(`Marc van de Bovenkamp Font`, 20, 15);
-  doc.text(`Triq Clarence 122b, 1.1, Msida, MSD 1290, Malta`, 20, 20);
-  doc.text(`VAT 3247-8213`, 20, 25);
-  doc.text(`+34 663450646`, 20, 30);
+  doc.text(data.businessInfo.name, 20, 15);
+  doc.text(data.businessInfo.address, 20, 20);
+  doc.text(data.businessInfo.taxId, 20, 25);
+  doc.text(data.businessInfo.phone || '', 20, 30);
   
   // Estilo para el email (azul y subrayado)
-  const emailText = `marc@bovenkamp.es`;
+  const emailText = `${data.businessInfo.email}`;
   const emailX = 20;
   const emailY = 35;
   doc.setTextColor(0, 0, 255); // Azul

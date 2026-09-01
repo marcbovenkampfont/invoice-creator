@@ -1,0 +1,65 @@
+@use '../variables' as *;
+
+.page-container {
+  animation: slideIn 0.4s ease;
+}
+
+.page-header {
+  margin-bottom: $spacing-xl;
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin: 0 0 $spacing-xs 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .page-description {
+    font-size: 1.125rem;
+    color: $text-light;
+    margin: 0;
+  }
+}
+
+.content-section {
+  background: $background-white;
+  border-radius: $radius-sm;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color;
+  transition: $transition-base;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-lg;
+  margin-top: $spacing-xl;
+}
+
+.settings-grid {
+  display: grid;
+  gap: $spacing-xl;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    .page-title {
+      font-size: 1.75rem;
+    }
+
+    .page-description {
+      font-size: 1rem;
+    }
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}

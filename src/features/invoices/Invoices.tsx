@@ -1,6 +1,5 @@
 import React from 'react';
-import PdfForm from '../../components/PdfForm/PdfForm';
-import '../pages.scss';
+import PdfForm from './components/PdfForm/PdfForm';
 
 export const Invoices: React.FC = () => {
   return (
