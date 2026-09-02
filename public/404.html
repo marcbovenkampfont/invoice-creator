@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirigiendo...</title>
+    <script>
+        (function () {
+        var base = "/invoice-creator/";
+        var fullPath = window.location.pathname + window.location.search + window.location.hash;
+    
+        // Quita la base para guardar solo la ruta interna de la app
+        var appPath = fullPath.indexOf(base) === 0 ? fullPath.slice(base.length) : fullPath;
+    
+        // Redirige a index pasando la ruta como query
+        var target = base + "?redirect=" + encodeURIComponent("/" + appPath.replace(/^\//, ""));
+        window.location.replace(target);
+        })();
+    </script>
+</head>
+<body>
+</body>
+</html>
