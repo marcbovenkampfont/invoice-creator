@@ -1,8 +1,3 @@
-// Este archivo importa tus datos reales desde bankAccounts.local.ts
-// bankAccounts.local.ts NO se sube a GitHub (está en .gitignore)
-//
-// Para configurar:
-// 1. Copia bankAccounts.example.ts a bankAccounts.local.ts
-// 2. Edita bankAccounts.local.ts con tus datos reales
-
-export { bankAccounts } from './bankAccounts.local';
+// Produccion usa datos publicos; en desarrollo Vite puede reemplazar
+// este modulo por bankAccounts.local.ts si existe en tu maquina.
+export { bankAccounts } from '@/util/constants/bankAccounts.public';

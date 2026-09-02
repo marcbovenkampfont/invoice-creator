@@ -25,3 +25,9 @@ Si es tu primera vez clonando este repositorio:
 ## Seguridad
 
 Los archivos `*.local.ts` están en `.gitignore` y **nunca se subirán a GitHub**. Solo los archivos de ejemplo se compartirán en el repositorio.
+
+## Comportamiento en build y produccion
+
+- En produccion se usan los archivos `*.public.ts` (sin datos sensibles).
+- En desarrollo, Vite reemplaza automaticamente los modulos publicos por `*.local.ts` si esos archivos existen en tu maquina.
+- Resultado: aunque hagas `npm run build` desde tu equipo, los datos de `*.local.ts` no se incluyen en `dist`.
